@@ -1,0 +1,50 @@
+debug: false
+logging:
+    level:
+        root: info
+        com.baomidou.mybatisplus: debug
+        com.phxl: debug
+        org.mybatis: debug
+        org.springframework.jdbc.datasource: debug
+        springfox: error
+    pattern:
+        console: "${CONSOLE_LOG_PATTERN:%clr(%d{${LOG_DATEFORMAT_PATTERN:HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %green(%-4L) [%clr(%-60.60logger{59}){cyan}] %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"
+mybatis-plus:
+    mapper-locations: classpath*:META-INF/mapping/*.xml
+    configuration:
+        map-underscore-to-camel-case: true
+        call-setters-on-nulls: false
+        cache-enabled: false
+server:
+    port: 8009
+    tomcat:
+        uri-encoding: UTF-8
+    error:
+        include-exception: true
+spring:
+    datasource:
+        druid:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            url: "jdbc:mysql://149.129.110.109:3306/db-test?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&allowMultiQueries=true&useSSL=false&autoReconnect=true&failOverReadOnly=false"
+            username: root
+            password: Hello@123123
+            initial-size: 5
+            max-wait: 10000
+            min-idle: 5
+            pool-prepared-statements: true
+            validation-query: "SELECT 1 FROM DUAL"
+            time-between-eviction-runs-millis: 60000
+            remove-abandoned: true
+            test-on-borrow: false
+            test-on-return: false
+            test-while-idle: true
+            filters: mergeStat
+    http:
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
+    mvc:
+        throw-exception-if-no-handler-found: true
+    resources:
+        add-mappings: false
