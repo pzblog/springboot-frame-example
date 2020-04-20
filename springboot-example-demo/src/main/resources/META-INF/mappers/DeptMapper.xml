@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.DeptMapper">
+
+    <!-- 映射集 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.model.entity.Dept">
+        <id column="dept_id" property="deptId" jdbcType="INTEGER" />
+        <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="DATE" />
+    </resultMap>
+
+    <!--查询数据集-->
+    <select id="findList" resultMap="BaseResultMap">
+        select dept_id, dept_name, create_time from t_dept order by dept_id
+    </select>
+
+    <!--单行查询-->
+    <select id="findDeptInfo" resultMap="BaseResultMap">
+        select dept_id, dept_name, create_time from t_dept where dept_id = #{deptId}
+    </select>
+
+    <!--新增-->
+    <insert id="insertInfo">
+        insert into t_dept(dept_name,create_time)
+        values(#{deptName}, #{createTime})
+    </insert>
+
+    <!--修改-->
+    <update id="updateInfo">
+        update t_dept set dept_name = #{deptName}
+        where dept_id = #{deptId}
+    </update>
+
+    <!--删除-->
+    <delete id="deleteAll">
+        delete from t_dept
+    </delete>
+
+</mapper>
